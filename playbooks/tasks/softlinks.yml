@@ -9,3 +9,15 @@
   loop:
     - src: ".ssh"
       dest: "~/.ssh"
+
+- name: Create softlinks for distrobox-host-exec
+  become: true
+  ansible.builtin.file:
+    src: "/usr/bin/distrobox-host-exec"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  loop:
+    - podman
+    - vagrant
+    - virsh
+    - distrobox
