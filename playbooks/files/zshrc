@@ -21,7 +21,7 @@ export PATH="/home/pl/box/arch/bin:/home/pl/box/arch/.cargo/bin:/usr/local/sbin:
 source $ZSH/oh-my-zsh.sh
 
 . ~/.aliases
-. ~/.dir_colors
+#. ~/.dir_colors
 
 export EDITOR=nvim
 

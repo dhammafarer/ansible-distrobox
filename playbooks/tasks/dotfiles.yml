@@ -1,0 +1,11 @@
+---
+- name: Copy basic dotfiles
+  ansible.builtin.copy:
+    src: files/{{ item }}
+    dest: ~/.{{ item }}
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  loop:
+    - zshrc
+    - aliases

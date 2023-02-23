@@ -24,3 +24,7 @@
     - name: Import ohmyzsh tasks
       ansible.builtin.import_tasks:
         file: tasks/ohmyzsh.yml
+
+    - name: Import dotfiles tasks
+      ansible.builtin.import_tasks:
+        file: tasks/dotfiles.yml
