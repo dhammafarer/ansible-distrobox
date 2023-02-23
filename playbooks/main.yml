@@ -24,7 +24,12 @@
     - name: Import ohmyzsh tasks
       ansible.builtin.import_tasks:
         file: tasks/ohmyzsh.yml
+      when: false
 
     - name: Import dotfiles tasks
       ansible.builtin.import_tasks:
         file: tasks/dotfiles.yml
+
+    - name: Import softlinks tasks
+      ansible.builtin.import_tasks:
+        file: tasks/softlinks.yml

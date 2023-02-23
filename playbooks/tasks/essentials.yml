@@ -10,6 +10,9 @@
   community.general.pacman:
     name:
       - zsh
+      - bat
+      - exa
+      - ranger
       - git
       - curl
       - wget
