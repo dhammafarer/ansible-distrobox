@@ -1,0 +1,12 @@
+---
+- name: Install neofetch
+  community.general.pacman:
+    name: neofetch
+    state: present
+  become: true
+
+- name: Create a file
+  ansible.builtin.file:
+    state: touch
+    path: "~/.vimrc"
+    mode: "0644"

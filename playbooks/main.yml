@@ -1,0 +1,41 @@
+---
+- name: Create a container with distrobox
+  hosts: localhost
+  connection: local
+  vars:
+    box:
+      name: arch
+      image: library/archlinux:latest
+      home: ~/box/arch
+
+  tasks:
+    - name: Ensure that container home directory exists.
+      ansible.builtin.file:
+        path: "{{ box.home }}"
+        state: directory
+        mode: "0755"
+
+    - name: Create the container.
+      ansible.builtin.command:
+        cmd: >
+          distrobox create -i {{ box.image }}
+          -n {{ box.name }}
+          -H {{ box.home }}
+          --init-hooks "sudo pacman -Syu --noconfirm python"
+      register: dc
+      changed_when: "'already exists' not in dc.stdout"
+
+    - name: Run the container
+      ansible.builtin.command:
+        cmd: distrobox enter {{ box.name }}
+      changed_when: false
+
+- name: Provision the container
+  hosts: arch
+  connection: podman
+  remote_user: pl
+
+  tasks:
+    - name: Import main tasks
+      ansible.builtin.import_tasks:
+        file: tasks/main.yml
