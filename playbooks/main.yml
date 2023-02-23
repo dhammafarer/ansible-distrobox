@@ -17,6 +17,10 @@
   remote_user: pl
 
   tasks:
-    - name: Import main tasks
+    - name: Import essentials
       ansible.builtin.import_tasks:
-        file: tasks/main.yml
+        file: tasks/essentials.yml
+
+    - name: Import ohmyzsh tasks
+      ansible.builtin.import_tasks:
+        file: tasks/ohmyzsh.yml

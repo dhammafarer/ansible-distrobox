@@ -10,5 +10,11 @@
   community.general.pacman:
     name:
       - zsh
+      - git
+      - curl
+      - wget
+      - openssh
       - neofetch
+      - neovim
+      - gitui
     state: present
