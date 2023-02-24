@@ -1,0 +1,13 @@
+essential_packages:
+  - bat
+  - curl
+  - exa
+  - git
+  - gitui
+  - neofetch
+  - neovim
+  - openssh
+  - ranger
+  - tree
+  - wget
+  - zsh

@@ -1,0 +1,18 @@
+---
+- name: Provision the box
+  hosts: arch
+  connection: podman
+  remote_user: pl
+  vars_files:
+    - vars/provision/essential_packages.yml
+
+  pre_tasks:
+    - name: Perform essential setup
+      ansible.builtin.import_tasks: tasks/provision/essentials.yml
+
+  roles:
+    - ohmyzsh
+
+  tasks:
+    - name: Creat soft link with the Host system
+      ansible.builtin.import_tasks: tasks/provision/softlinks.yml

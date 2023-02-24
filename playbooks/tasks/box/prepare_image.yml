@@ -1,0 +1,18 @@
+---
+- name: Pull a base container image
+  containers.podman.podman_image:
+    name: docker.io/library/archlinux:latest
+    state: present
+  register: baseimage
+
+- name: Check if the box image already exists
+  containers.podman.podman_image_info:
+    name: "{{ box.image }}"
+  register: boximage
+
+- name: Build a custom image for the box
+  containers.podman.podman_image:
+    name: archlinux:distrobox
+    state: build
+    path: build
+  when: "baseimage.changed or (boximage.images | length == 0)"

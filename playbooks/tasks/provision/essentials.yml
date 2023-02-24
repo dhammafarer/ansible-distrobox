@@ -8,16 +8,5 @@
 - name: Ensure essential packages are installed
   become: true
   community.general.pacman:
-    name:
-      - zsh
-      - bat
-      - exa
-      - ranger
-      - git
-      - curl
-      - wget
-      - openssh
-      - neofetch
-      - neovim
-      - gitui
+    name: "{{ essential_packages }}"
     state: present

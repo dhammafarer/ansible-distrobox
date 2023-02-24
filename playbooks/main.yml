@@ -1,35 +1,6 @@
 ---
 - name: Create a container with distrobox
-  hosts: localhost
-  connection: local
-  vars:
-    box:
-      name: arch
-      image: library/archlinux:latest
-      home: ~/box/arch
+  ansible.builtin.import_playbook: create_box.yml
 
-  tasks:
-    - name: Create the container.
-      ansible.builtin.import_tasks: tasks/create_container.yml
-
-- name: Provision the container
-  hosts: arch
-  remote_user: pl
-
-  tasks:
-    - name: Import essentials
-      ansible.builtin.import_tasks:
-        file: tasks/essentials.yml
-
-    - name: Import ohmyzsh tasks
-      ansible.builtin.import_tasks:
-        file: tasks/ohmyzsh.yml
-      when: false
-
-    - name: Import dotfiles tasks
-      ansible.builtin.import_tasks:
-        file: tasks/dotfiles.yml
-
-    - name: Import softlinks tasks
-      ansible.builtin.import_tasks:
-        file: tasks/softlinks.yml
+- name: Provision the box
+  ansible.builtin.import_playbook: provision.yml

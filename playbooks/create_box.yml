@@ -1,0 +1,14 @@
+---
+- name: Create a container with distrobox
+  hosts: localhost
+  connection: local
+  vars_files:
+    - vars/box/main.yml
+
+  pre_tasks:
+    - name: Prepare the image
+      ansible.builtin.import_tasks: tasks/box/prepare_image.yml
+
+  tasks:
+    - name: Create the box
+      ansible.builtin.import_tasks: tasks/box/create_box.yml

@@ -1,0 +1,4 @@
+box:
+  name: arch
+  image: localhost/archlinux:distrobox
+  home: ~/box/arch

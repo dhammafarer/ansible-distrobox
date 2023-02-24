@@ -11,7 +11,6 @@
       distrobox create -i {{ box.image }}
       -n {{ box.name }}
       -H {{ box.home }}
-      --init-hooks "sudo pacman -Syu --noconfirm python"
   register: dc
   changed_when: "'already exists' not in dc.stdout"
 
