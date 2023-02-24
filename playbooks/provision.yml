@@ -15,5 +15,8 @@
     - ohmyzsh
 
   tasks:
-    - name: Creat soft link with the Host system
+    - name: Create soft links with the Host system
       ansible.builtin.import_tasks: tasks/provision/softlinks.yml
+
+    - name: Install packages for development
+      ansible.builtin.import_tasks: tasks/provision/dev.yml

@@ -1,0 +1,6 @@
+- name: Ensure npm is installed
+  become: true
+  ansible.builtin.package:
+    name:
+      - npm
+    state: present

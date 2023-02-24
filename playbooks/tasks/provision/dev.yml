@@ -1,0 +1,8 @@
+---
+- name: Ensure packages for development are installed
+  become: true
+  ansible.builtin.package:
+    name:
+      - github-cli
+      - typescript
+    state: present
