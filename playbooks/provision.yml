@@ -11,6 +11,7 @@
       ansible.builtin.import_tasks: tasks/provision/essentials.yml
 
   roles:
+    # dhammafarer/ansible-role-ohmyzsh
     - ohmyzsh
 
   tasks:
