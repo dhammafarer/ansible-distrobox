@@ -1,0 +1,33 @@
+---
+- name: Ensure Paru dependencies are installed.
+  become: true
+  community.general.pacman:
+    name:
+      - base-devel
+      - rustup
+    state: present
+    extra_args: --needed
+
+- name: Check default rust toolchain.
+  ansible.builtin.command:
+    cmd: "rustup show active-toolchain"
+  changed_when: false
+  register: rustup
+
+- name: Set rust default toolchain to stable.
+  ansible.builtin.command:
+    cmd: "rustup default stable"
+  when: "'stable' not in rustup.stdout"
+
+- name: Clone repository.
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/paru.git
+    dest: /tmp/paru
+    version: master
+    depth: 1
+
+- name: Build paru.
+  ansible.builtin.command:
+    chdir: /tmp/paru
+    cmd: "makepkg -si --noconfirm"
+    creates: "/usr/sbin/paru"

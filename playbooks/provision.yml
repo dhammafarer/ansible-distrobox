@@ -11,8 +11,8 @@
       ansible.builtin.import_tasks: tasks/provision/essentials.yml
 
   roles:
-    # dhammafarer/ansible-role-ohmyzsh
     - ohmyzsh
+    - paru
 
   tasks:
     - name: Create soft links with the Host system
