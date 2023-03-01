@@ -1,0 +1,6 @@
+---
+install_pyradio: true
+pyradio_player: mpv
+
+packages:
+  - autojump

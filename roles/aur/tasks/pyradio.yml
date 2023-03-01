@@ -1,0 +1,24 @@
+---
+- name: Install dependencies for pyradio.
+  community.general.pacman:
+    name: "{{ pyradio_player }}"
+    state: present
+  become: true
+
+- name: Install pyradio if it isn't installed already.
+  kewlfft.aur.aur:
+    name: pyradio
+    state: present
+
+- name: Remove pyradio config dir.
+  ansible.builtin.file:
+    path: ~/.config/pyradio
+    state: absent
+
+- name: Symlink pyradio config.
+  ansible.builtin.file:
+    src: ~/Nextcloud/AppData/config/pyradio
+    dest: ~/.config/pyradio
+    state: link
+    owner: "{{ ansible_user_id }}"
+    mode: "0755"

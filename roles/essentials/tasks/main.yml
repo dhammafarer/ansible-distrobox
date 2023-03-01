@@ -1,0 +1,15 @@
+---
+- name: Ensure locale is correct.
+  become: true
+  community.general.locale_gen:
+    name: en_US.UTF-8
+    state: present
+
+- name: Ensure essential packages are installed
+  become: true
+  community.general.pacman:
+    name: "{{ essential_packages }}"
+    state: present
+
+- name: Import softlinks
+  ansible.builtin.import_tasks: softlinks.yml

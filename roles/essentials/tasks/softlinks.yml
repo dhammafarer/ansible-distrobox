@@ -1,0 +1,24 @@
+---
+- name: Create softlinks from host to $HOME
+  ansible.builtin.file:
+    src: "/home/{{ ansible_user_id }}/{{ item }}"
+    dest: "~/{{ item }}"
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    state: link
+  loop:
+    - ".ssh"
+    - "Nextcloud"
+    - "Code"
+
+- name: Create softlinks for distrobox-host-exec
+  become: true
+  ansible.builtin.file:
+    src: "/usr/bin/distrobox-host-exec"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  loop:
+    - podman
+    - vagrant
+    - virsh
+    - distrobox

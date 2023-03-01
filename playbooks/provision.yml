@@ -3,20 +3,10 @@
   hosts: arch
   connection: podman
   remote_user: pl
-  vars_files:
-    - vars/provision/essential_packages.yml
-
-  pre_tasks:
-    - name: Perform essential setup
-      ansible.builtin.import_tasks: tasks/provision/essentials.yml
 
   roles:
-    - ohmyzsh
-    - paru
-
-  tasks:
-    - name: Create soft links with the Host system
-      ansible.builtin.import_tasks: tasks/provision/softlinks.yml
-
-    - name: Install packages for development
-      ansible.builtin.import_tasks: tasks/provision/dev.yml
+    # - essentials
+    # - ohmyzsh
+    # - paru
+    - aur
+    # - neovim

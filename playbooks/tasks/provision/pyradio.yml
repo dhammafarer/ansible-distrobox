@@ -1,0 +1,7 @@
+---
+- name: Install pyradio if it isn't installed already
+  kewlfft.aur.aur:
+    name: pyradio
+    state: present
+  become: yes
+

@@ -1,0 +1,9 @@
+---
+- name: Install packages from AUR.
+  kewlfft.aur.aur:
+    name: "{{ packages }}"
+    state: present
+
+- name: Import pyradio tasks
+  ansible.builtin.import_tasks: pyradio.yml
+  when: install_pyradio
