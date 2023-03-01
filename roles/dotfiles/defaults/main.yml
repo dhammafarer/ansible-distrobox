@@ -8,3 +8,7 @@ dotfiles_home: "~"
 
 dotfiles_files:
   - aliases
+  - gitconfig
+  - gitignore
+  - npmrc
+  - zshrc
