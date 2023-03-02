@@ -8,6 +8,7 @@
     state: link
   loop:
     - ".ssh"
+    - ".password-store"
     - "Nextcloud"
     - "Code"
 

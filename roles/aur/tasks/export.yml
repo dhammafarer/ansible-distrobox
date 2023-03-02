@@ -1,0 +1,6 @@
+---
+- name: Export AUR binaries to host.
+  ansible.builtin.command:
+    cmd: "distrobox-export --bin /usr/sbin/{{ item }} --export-path {{ distrobox_bin_export_path }}"
+    creates: "{{ distrobox_bin_export_path }}/{{ item }}"
+  loop: "{{ distrobox_bin_export }}"

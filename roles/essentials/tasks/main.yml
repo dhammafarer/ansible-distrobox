@@ -1,9 +1,20 @@
 ---
+- name: Ensure glibc is installed.
+  become: true
+  community.general.pacman:
+    name: glibc
+    state: present
+  tags: current
+
 - name: Ensure locale is correct.
   become: true
   community.general.locale_gen:
-    name: en_US.UTF-8
+    name: "{{ item }}"
     state: present
+  loop:
+    - en_US.UTF-8
+    - zh_TW.UTF-8
+  tags: current
 
 - name: Ensure essential packages are installed
   become: true

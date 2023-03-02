@@ -2,5 +2,12 @@
 install_pyradio: true
 pyradio_player: mpv
 
-packages:
+aur_packages:
   - autojump
+  - rofi-pass
+  - rofi-calc
+
+distrobox_bin_export_path: "/home/pl/.local/bin"
+distrobox_bin_export:
+  - rofi-pass
+  - rofi

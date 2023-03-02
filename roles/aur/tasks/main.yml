@@ -1,9 +1,13 @@
 ---
 - name: Install packages from AUR.
   kewlfft.aur.aur:
-    name: "{{ packages }}"
+    name: "{{ aur_packages }}"
     state: present
 
 - name: Import pyradio tasks
   ansible.builtin.import_tasks: pyradio.yml
   when: install_pyradio
+
+- name: Export AUR bins to host
+  ansible.builtin.import_tasks: export.yml
+  when: "distrobox_bin_export | length > 0"

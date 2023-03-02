@@ -3,12 +3,14 @@ essential_packages:
   - bat
   - curl
   - exa
+  - fd
   - git
   - gitui
   - neofetch
   - neovim
   - openssh
   - ranger
+  - ripgrep
   - tree
   - wget
   - zsh

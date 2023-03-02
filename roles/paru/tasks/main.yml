@@ -1,12 +1,19 @@
 ---
-- name: Ensure Paru dependencies are installed.
+- name: Ensure base-devel is installed.
   become: true
   community.general.pacman:
     name:
       - base-devel
-      - rustup
     state: present
     extra_args: --needed
+
+- name: Ensure other Paru dependencies are installed.
+  become: true
+  community.general.pacman:
+    name:
+      - fakeroot
+      - rustup
+    state: present
 
 - name: Check default rust toolchain.
   ansible.builtin.command:
