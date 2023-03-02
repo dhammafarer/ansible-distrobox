@@ -1,0 +1,23 @@
+---
+- name: Ensure rofi is installed.
+  ansible.builtin.package:
+    name: rofi
+    state: present
+
+- name: Create configuration directory.
+  ansible.builtin.file:
+    path: "{{ rofi_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy themes directory.
+  ansible.builtin.copy:
+    src: files/themes
+    dest: "{{ rofi_dir }}/themes"
+    mode: "0755"
+
+- name: Copy config.rasi.
+  ansible.builtin.copy:
+    src: files/config.rasi
+    dest: "{{ rofi_dir }}/config.rasi"
+    mode: "0644"

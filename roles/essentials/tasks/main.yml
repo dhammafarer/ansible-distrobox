@@ -4,7 +4,6 @@
   community.general.pacman:
     name: glibc
     state: present
-  tags: current
 
 - name: Ensure locale is correct.
   become: true
