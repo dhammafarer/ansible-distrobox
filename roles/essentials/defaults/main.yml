@@ -14,3 +14,21 @@ essential_packages:
   - tree
   - wget
   - zsh
+
+host_exec_src: "/usr/bin/distrobox-host-exec"
+host_exec_dest: "/usr/local/bin"
+
+host_exec_bins:
+  - vagrant
+  - distrobox
+  - podman
+  - virsh
+
+box_home: "~"
+host_home: "/home/{{ ansible_user_id }}"
+host_softlinks:
+  - ".gnupg"
+  - ".password-store"
+  - ".ssh"
+  - "Nextcloud"
+  - "Code"

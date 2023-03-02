@@ -1,25 +1,35 @@
 ---
+- name: Ensure all configured dotfiles are links.
+  ansible.builtin.command:
+    cmd: "ls -F {{ box_home }}/{{ item }}"
+  loop: "{{ host_softlinks }}"
+  changed_when: false
+  check_mode: false
+  failed_when: false
+  register: existing
+
+- name: Remove existing file if a replacement is being linked.
+  ansible.builtin.file:
+    path: "{{ box_home }}/{{ host_softlinks[index] }}"
+    state: absent
+  when: "'@' not in item['stdout']"
+  loop: "{{ existing.results }}"
+  loop_control:
+    index_var: index
+
 - name: Create softlinks from host to $HOME
   ansible.builtin.file:
-    src: "/home/{{ ansible_user_id }}/{{ item }}"
+    src: "{{ host_home }}/{{ item }}"
     dest: "~/{{ item }}"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_id }}"
     state: link
-  loop:
-    - ".ssh"
-    - ".password-store"
-    - "Nextcloud"
-    - "Code"
+  loop: "{{ host_softlinks }}"
 
 - name: Create softlinks for distrobox-host-exec
   become: true
   ansible.builtin.file:
-    src: "/usr/bin/distrobox-host-exec"
-    dest: "/usr/local/bin/{{ item }}"
+    src: "{{ host_exec_src }}"
+    dest: "{{ host_exec_dest }}/{{ item }}"
     state: link
-  loop:
-    - podman
-    - vagrant
-    - virsh
-    - distrobox
+  loop: "{{ host_exec_bins }}"

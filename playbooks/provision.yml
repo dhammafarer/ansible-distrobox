@@ -5,10 +5,10 @@
   remote_user: pl
 
   roles:
-    # - essentials
+    - essentials
     # - ohmyzsh
     # - dotfiles
     # - neovim
-    - rofi
+    # - rofi
     # - paru
     # - aur
