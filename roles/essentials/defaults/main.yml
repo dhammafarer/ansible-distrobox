@@ -1,5 +1,6 @@
 ---
 essential_packages:
+  - atool
   - bat
   - curl
   - exa
@@ -9,9 +10,12 @@ essential_packages:
   - neofetch
   - neovim
   - openssh
+  - pass
   - ranger
   - ripgrep
   - tree
+  - unrar
+  - unzip
   - wget
   - zsh
 
