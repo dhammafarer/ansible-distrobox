@@ -1,7 +1,6 @@
----
-- name: Provision the box
-  hosts: arch
-  connection: podman
+- name: Provision arch localhost
+  hosts: localhost
+  connection: local
   remote_user: pl
 
   roles:

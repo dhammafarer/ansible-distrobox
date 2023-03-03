@@ -1,0 +1,5 @@
+FROM {{ base_image_name }}
+
+{% for package in box_install_packages[box_os_family] %}
+RUN pacman -Sy --noconfirm {{ package }}
+{% endfor %}

@@ -13,6 +13,7 @@ essential_packages:
   - pass
   - ranger
   - ripgrep
+  - rsync
   - tree
   - unrar
   - unzip
@@ -27,6 +28,7 @@ host_exec_bins:
   - distrobox
   - podman
   - virsh
+  - tailscale
 
 box_home: "~"
 host_home: "/home/{{ ansible_user_id }}"

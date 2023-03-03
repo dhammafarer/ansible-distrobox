@@ -1,0 +1,11 @@
+---
+- name: Check default rust toolchain.
+  ansible.builtin.command:
+    cmd: "rustup show active-toolchain"
+  changed_when: false
+  register: rustup
+
+- name: Set rust default toolchain to stable.
+  ansible.builtin.command:
+    cmd: "rustup default stable"
+  when: "'stable' not in rustup.stdout"

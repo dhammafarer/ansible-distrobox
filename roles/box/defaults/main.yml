@@ -1,0 +1,5 @@
+---
+# defaults file for box
+box_name: arch
+box_image: "localhost/distrobox-{{ box_os_family }}:latest"
+box_home: "/home/{{ ansible_user_id }}/box/{{ box_name }}"

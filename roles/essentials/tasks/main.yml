@@ -1,19 +1,20 @@
 ---
-- name: Ensure glibc is installed.
-  become: true
-  community.general.pacman:
-    name: glibc
-    state: present
-
 - name: Ensure locale is correct.
-  become: true
-  community.general.locale_gen:
-    name: "{{ item }}"
-    state: present
-  loop:
-    - en_US.UTF-8
-    - zh_TW.UTF-8
-  tags: current
+  block:
+    - name: Install locales.
+      become: true
+      community.general.locale_gen:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - en_US.UTF-8
+        - zh_TW.UTF-8
+  rescue:
+    - name: Force reinstallation of glibc to generate missing locale.
+      become: true
+      ansible.builtin.command:
+        cmd: "pacman -Sy --noconfirm glibc"
+      changed_when: false
 
 - name: Ensure essential packages are installed
   become: true

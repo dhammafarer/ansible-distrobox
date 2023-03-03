@@ -1,0 +1,14 @@
+---
+build_dir: /tmp/distrobox-build-{{ lookup('pipe', 'date +%s') }}
+
+box_name: "arch"
+box_os_family: "archlinux"
+
+box_install_packages:
+  archlinux:
+    - sudo
+    - python
+
+base_image_name: "docker.io/library/archlinux:latest"
+
+custom_image_name: "distrobox-{{ box_os_family }}"

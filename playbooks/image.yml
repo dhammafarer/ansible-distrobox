@@ -3,10 +3,9 @@
   hosts: localhost
   connection: local
   vars:
-    box_name: "test"
+    box_name: test
     box_os_family: "archlinux"
     base_image_name: "docker.io/library/archlinux:latest"
 
   roles:
     - image
-    - box

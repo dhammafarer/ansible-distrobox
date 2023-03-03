@@ -1,6 +1,0 @@
----
-- name: Create a container with distrobox
-  ansible.builtin.import_playbook: create_box.yml
-
-- name: Provision the box
-  ansible.builtin.import_playbook: provision.yml

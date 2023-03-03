@@ -7,24 +7,11 @@
     state: present
     extra_args: --needed
 
-- name: Ensure other Paru dependencies are installed.
+- name: Ensure fakeroot is installed.
   become: true
   community.general.pacman:
-    name:
-      - fakeroot
-      - rustup
+    name: fakeroot
     state: present
-
-- name: Check default rust toolchain.
-  ansible.builtin.command:
-    cmd: "rustup show active-toolchain"
-  changed_when: false
-  register: rustup
-
-- name: Set rust default toolchain to stable.
-  ansible.builtin.command:
-    cmd: "rustup default stable"
-  when: "'stable' not in rustup.stdout"
 
 - name: Clone repository.
   ansible.builtin.git:
