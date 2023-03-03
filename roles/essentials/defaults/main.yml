@@ -6,6 +6,7 @@ essential_packages:
   - exa
   - fd
   - git
+  - github-cli
   - gitui
   - neofetch
   - neovim
