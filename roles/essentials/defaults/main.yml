@@ -19,6 +19,7 @@ essential_packages:
   - unrar
   - unzip
   - wget
+  - which
   - zsh
 
 host_exec_src: "/usr/bin/distrobox-host-exec"
